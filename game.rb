@@ -13,13 +13,15 @@ class Game
     bulls, cows = process_input
 
     if bulls == 4
-      puts 'Nice :D'
+      puts "Nice, I guessed it only in #{board.try_count} try! :D"
     elsif board.check(bulls, cows)
       play
     else
       puts "I don't have any other option. Did you make any mistake scoring me?"
     end
   end
+
+  private
 
   def process_input
     puts "I think you thought #{board.current_guess.join.upcase}."
