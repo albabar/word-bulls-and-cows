@@ -54,4 +54,9 @@ class Game
   end
 end
 
+trap('SIGINT') do
+  puts "\nClosing the game..."
+  exit 130
+end
+
 Game.new.play
