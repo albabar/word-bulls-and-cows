@@ -4,19 +4,21 @@ class Engine
   attr_reader :guesses, :candidates
 
   def initialize
-    @scores = []
     @guesses = []
     @candidates = [*'a'..'z'].permutation(SIZE).to_a.shuffle
   end
 
   def check(bulls, cows)
     filter_candidates(bulls, cows)
-    return false if candidates.empty?
-    @guesses << candidates.pop
+    candidates.any? && guess
   end
 
   def current_guess
-    guesses.last
+    guesses.last || guess
+  end
+
+  def guess
+    @guesses << candidates.pop
   end
 
   def filter_candidates(bulls, cows)
