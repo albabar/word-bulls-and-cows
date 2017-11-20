@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 require_relative './engine'
+require_relative './color'
 
 class Game
+  include Color
+
   attr_reader :board
+
   def initialize
     @board = Engine.new
-    print instructions
+    puts cyan(instructions)
     puts "\n" * 2
   end
 
@@ -14,19 +18,19 @@ class Game
     bulls, cows = process_input
 
     if bulls == 4
-      puts "Nice, I guessed it only in #{board.try_count} try! :D"
+      puts light_blue("Nice, I guessed it only in #{board.try_count} try! :D")
     elsif board.check(bulls, cows)
       play
     else
-      puts "I don't have any other option. Did you make any mistake scoring me?"
+      puts red("I don't have any other option. Did you make any mistake scoring me?")
     end
   end
 
   private
 
   def process_input
-    puts guess_present
-    print 'What is the score? (space separated bulls and cows): '
+    puts green(guess_present)
+    print yellow('What is the score? (space separated bulls and cows): ')
     gets.chomp.strip.split(' ').map(&:to_i)
   end
 
@@ -38,7 +42,7 @@ class Game
       "It's probably __GUESS__",
       'Most likely __GUESS__'
     ]
-    presenters.sample.sub('__GUESS__', board.current_guess.join.upcase)
+    presenters.sample.sub('__GUESS__', blue(bold(board.current_guess.join.upcase)))
   end
 
   def instructions
@@ -55,7 +59,7 @@ class Game
 end
 
 trap('SIGINT') do
-  puts "\nClosing the game..."
+  puts Class.new.extend(Color).red("\nClosing the game...")
   exit 130
 end
 
