@@ -57,10 +57,3 @@ class Game
     DOC
   end
 end
-
-trap('SIGINT') do
-  puts Class.new.extend(Color).red("\nClosing the game...")
-  exit 130
-end
-
-Game.new.play

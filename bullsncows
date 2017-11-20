@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative './game'
+require_relative './color'
+
+trap('SIGINT') do
+  puts Class.new.extend(Color).red("\nClosing the game...")
+  exit 130
+end
+
+Game.new.play

@@ -15,5 +15,5 @@ Ruby CLI implementation of Bulls and Cows game.
 ## How to Play
 * Clone the repo on your desktop.
 * Open up the console and go into the game directory.
-* Issue command: `ruby game.rb`
+* Issue command: `./bullsncows`
 * Follow onscreen instructions.
